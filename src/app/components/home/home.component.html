@@ -1,0 +1,5 @@
+<div *ngIf="currentUserRoles$ | async as currentUserRoles">
+  <li *ngFor="let role of currentUserRoles">
+    {{ role }}
+  </li>
+</div>
