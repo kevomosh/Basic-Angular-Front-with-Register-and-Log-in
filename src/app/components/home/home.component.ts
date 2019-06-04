@@ -1,6 +1,6 @@
 import { AuthService } from "./../../services/auth.service";
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, pipe } from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -9,12 +9,16 @@ import { Observable } from "rxjs";
 })
 export class HomeComponent implements OnInit {
   LogInStatus$: Observable<boolean>;
-  currentUserRoles$: Observable<string[]>;
+  roles: string[];
 
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
     this.LogInStatus$ = this.auth.isLoggedIn;
-    this.currentUserRoles$ = this.auth.currentUserRoles;
+    this.auth.currentUserRoles.subscribe(r => (this.roles = r));
+  }
+
+  displayRoles() {
+    return this.roles;
   }
 }

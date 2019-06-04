@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { Role } from "../model/Role";
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
-  //private roles: Array<string> = [];
+  private roles: Array<string> = [];
 
   private BASE_URL: string = "http://localhost:8080/api";
   private LOGIN_URL: string = `${this.BASE_URL}/auth/signin`;
@@ -79,8 +80,7 @@ export class AuthService {
   get currentUserRoles() {
     return this.$Roles.asObservable();
   }
-
-  // private saveAuthorities(authorities: string[]){
-  //   localStorage.setItem()
+  // get currentUserRoles(): Observable<Role> {
+  //   return this.$Roles.asObservable().pipe(map(r => r.authority));
   // }
 }

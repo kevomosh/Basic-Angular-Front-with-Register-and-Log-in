@@ -1,3 +1,4 @@
+import { AuthGuardService } from "./guards/auth-guard.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
@@ -9,6 +10,9 @@ import { RegisterComponent } from "./components/register/register.component";
 import { HomeComponent } from "./components/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AdminComponent } from "./components/admin/admin.component";
+import { UserComponent } from "./components/user/user.component";
+import { AccessDeniedComponent } from "./components/access-denied/access-denied.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NavMenuComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    UserComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
