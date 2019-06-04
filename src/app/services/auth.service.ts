@@ -30,6 +30,10 @@ export class AuthService {
   ]);
 
   checkLoginStatus(): boolean {
+    let loginCookie = localStorage.getItem("loginStatus");
+    if (loginCookie == "1") {
+      return true;
+    }
     return false;
   }
 
@@ -44,6 +48,7 @@ export class AuthService {
           localStorage.setItem("username", result.username);
           localStorage.setItem("roles", JSON.stringify(result.authorities));
           this.UserName.next(localStorage.getItem("username"));
+          this.$Roles.next([localStorage.getItem("roles")]);
         }
         return result;
       })
